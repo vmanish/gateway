@@ -1,0 +1,2 @@
+env = Environment()
+env.Program('monitor', Glob('src/*.cpp'), LIBS=['paho-mqtt3cs', 'paho-mqtt3c', 'paho-mqtt3as', 'paho-mqtt3as', 'paho-mqttpp3'], LIBPATH='/usr/local/lib')

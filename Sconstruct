@@ -1,0 +1,11 @@
+def modules():
+	yield 'simulator'
+	yield 'monitor'
+
+import os,sys
+
+for module in modules():
+	theSconscript = os.path.join(module, 'SConscript')
+	if os.path.isfile(theSconscript):
+		SConscript(theSconscript, duplicate=0)
+
