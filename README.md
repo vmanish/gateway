@@ -1,7 +1,7 @@
 # Device gateway
 
 POC for a Device Gateway for monitoring sensor devices.
-
+![alt text](https://github.com/vmanish/gateway/blob/main/gateway.png?raw=true)
 ## Major Components:
 ### Sensors/ Simulator
 Actual Sensors posting temperature data on mqtt "data" topic.
@@ -14,7 +14,7 @@ Handles command request /response to/from monitor to gather device statistics, o
 Handles all MQTT communication  between CLI, Devices (simulator) and the Monitor.
 ### Connector(s) [To be implemented]
 To add other devices protocols, a per protocol device connector component would be required. This connector will parse protocol specific device data to post the same on mqtt "data" topic.
-Keeper, subscribes to all data MQTT communication and feed run time sensor data streams in to a data store.
+
 ### Ruler [To be implemented]
 Rules engine to apply basic actions on incoming device data stream.
 
@@ -51,12 +51,20 @@ docker run  -it gateway:v1  /bin/bash
 sh startup.sh
 
 #### Run CLI to interact with the monitor gateway
+cd cli
 CLI Usage:-
                 python3 cli.py listAllDevices
                 python3 cli.py getDeviceInfo {deviceName}
-                python3 cli.py getTotalMessageCount )
+                python3 cli.py getTotalMessageCount 
 
                 Note: refer deviceName from listAlldevices command output.
 
 #### To see message broker & monitor service logs 
-tail -f nohup.log
+cd /home/gateway && tail -f nohup.out
+
+data: {'name': 'E_00023', 'temp': '8'}       <<<< Monitor receiving temperature data from sensor E_00023
+1630928550: Client E_00023 disconnected.     <<<< Sensor E_00023 disconnected
+1630928553: New connection from 127.0.0.1 on port 1883.
+1630928553: New client connected from 127.0.0.1 as E_00010 (p2, c1, k60).   
+data: {'name': 'E_00010', 'temp': '0'}        
+...
