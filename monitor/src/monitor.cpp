@@ -8,8 +8,7 @@
 #include <sstream>
 #include "mqtt/client.h"
 #include "device.hpp"
-
-#include "parseJson.hpp"
+#include "cli.hpp"
 
 using namespace std;
 using namespace std::chrono;
@@ -19,7 +18,7 @@ const string CLIENT_ID		{ "monitor" };
 
 mqtt::client cli(SERVER_ADDRESS, CLIENT_ID);
 
-
+/////////////////////////////////////////////////////////////////////////////
 int publishCommandResponse(string  response)
 {
 
@@ -36,12 +35,6 @@ int publishCommandResponse(string  response)
 	return 0;
 }
 
-
-
-/////////////////////////////////////////////////////////////////////////////
-
-vector<Device *> Device::_list;
-int Device::totalMsgCount = 0;
 
 int main(int argc, char* argv[])
 {
@@ -68,10 +61,10 @@ int main(int argc, char* argv[])
 			if (msg) {
 				cout << msg->get_topic() << ": " << msg->to_string() << endl;
 				if(msg->get_topic() == "data") {
-					parseJsonDeviceData(msg->get_payload());
+					handleDeviceData(msg->get_payload());
 				}
 				else if (msg->get_topic() == "command") {
-					parseJsonCommand(msg->get_payload());
+					handleCommand(msg->get_payload());
 				}
 			}
 			else if (!cli.is_connected()) {

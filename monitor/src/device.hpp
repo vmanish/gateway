@@ -10,8 +10,6 @@
 #include <chrono>
 #include <sstream>
 #include <vector>
-#include "parseJson.hpp"
-#include "device.hpp"
 
 using namespace std;
 using namespace std::chrono;
@@ -32,14 +30,13 @@ public:
 
 	static Device * getDevice(const string& name, bool doCreate);
 
-
 	static int updateMessage (string name, string temperature);
 
 	static int listAllDevices(string & list);
 
-	static int processCommand (string command , string param);
+    static int getDeviceInfo(string name, string & info);
+
 };
 
-int publishCommandResponse(string  response);
 
 #endif
