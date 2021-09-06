@@ -20,5 +20,4 @@ RUN cd /home/   &&\
     git clone https://github.com/vmanish/gateway.git  && \
     cd gateway  &&    scons
 
-CMD [ "bash",  "startup.sh"]
 WORKDIR /home/gateway/
