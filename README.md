@@ -38,19 +38,26 @@ Docker
 
 ### Installation Steps 
 #### Build the Docker Image:-
+```
 docker build -t gateway:v1 .
+```
 
 #### Run the docker image
+```
 docker run  -it gateway:v1  /bin/bash
+```
 ### Usage:- (refer startup.sh)
 1. Run MQTT Broker (mosquitto)
 2. Run Simulator to generate device traffic (simulator/simulator.py)
 3. Run monitor (monitor/monitor)
 4. Use CLI to observe device statistics developing from device traffic. (cli/cli.py)
 #### Start Message broker, device simulator and  gateway monitor services.
+```
 sh startup.sh
+```
 
 #### Run CLI to interact with the monitor gateway
+```
 cd cli
 CLI Usage:-
                 python3 cli.py listAllDevices
@@ -58,11 +65,11 @@ CLI Usage:-
                 python3 cli.py getTotalMessageCount 
 
                 Note: refer deviceName from listAlldevices command output.
-
+```
 #### To see message broker & monitor service logs 
+```
 cd /home/gateway && tail -f nohup.out
 
-```
 data: {'name': 'E_00023', 'temp': '8'}       <<<< Monitor receiving temperature data from sensor E_00023
 1630928550: Client E_00023 disconnected.     <<<< Sensor E_00023 disconnected
 1630928553: New connection from 127.0.0.1 on port 1883.
