@@ -43,7 +43,6 @@ int handleCommand(string msg)
     string key[] = {"request", "param"};
     string value[2];
     if(!parseJson(msg, key, value )) {
-        cout << value[0] << " , " << value[1] << endl;
         processCommand (value[0] , value[1]);
     }
 	return 0;
@@ -54,7 +53,6 @@ int handleDeviceData(string msg)
     string key[] = {"name", "temp"};
     string value[2];
     if(!parseJson(msg, key, value)) {
-        cout << value[0] << " , " << value[1] << endl;
 	    Device::updateMessage (value[0], value[1] );
     }
 	return 0;
