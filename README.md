@@ -62,9 +62,11 @@ CLI Usage:-
 #### To see message broker & monitor service logs 
 cd /home/gateway && tail -f nohup.out
 
+```
 data: {'name': 'E_00023', 'temp': '8'}       <<<< Monitor receiving temperature data from sensor E_00023
 1630928550: Client E_00023 disconnected.     <<<< Sensor E_00023 disconnected
 1630928553: New connection from 127.0.0.1 on port 1883.
 1630928553: New client connected from 127.0.0.1 as E_00010 (p2, c1, k60).   
 data: {'name': 'E_00010', 'temp': '0'}        
 ...
+```
